@@ -1,4 +1,3 @@
-
 /* Resetting some default browser styles */
 body, h1, h2, p, ul, li, a {
     margin: 0;
@@ -44,9 +43,16 @@ nav ul li a:hover {
     color: black;
 }
 
+/* Highlight active link */
+nav ul li a.active {
+    background-color: #ddd;
+    color: black;
+}
+
 /* About section styles */
 #about {
     padding: 20px;
+    display: block;
 }
 
 #about h1, #about h2 {
@@ -55,4 +61,37 @@ nav ul li a:hover {
 
 #about p {
     margin-bottom: 10px;
+}
+
+/* Hide other sections by default */
+section:not(#about) {
+    display: none;
+}
+
+/* Loading overlay styles */
+#loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+.loader {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
