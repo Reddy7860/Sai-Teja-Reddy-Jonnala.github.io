@@ -1,13 +1,23 @@
+
 document.addEventListener("DOMContentLoaded", function () {
-    // Function to show the selected section and hide the rest
-    function showSection(sectionId) {
-        const sections = document.querySelectorAll("section");
-        sections.forEach((section) => {
-            if (section.id === sectionId) {
-                section.style.display = "block";
+    // Function to highlight the active navigation link
+    function highlightActiveLink(sectionId) {
+        const navLinks = document.querySelectorAll("nav a");
+        navLinks.forEach((link) => {
+            if (link.getAttribute("href").substring(1) === sectionId) {
+                link.classList.add("active");
             } else {
-                section.style.display = "none";
+                link.classList.remove("active");
             }
+        });
+    }
+
+    // Function for smooth scrolling to the selected section
+    function smoothScrollTo(element) {
+        window.scroll({
+            behavior: 'smooth',
+            left: 0,
+            top: element.offsetTop
         });
     }
 
@@ -17,12 +27,14 @@ document.addEventListener("DOMContentLoaded", function () {
         link.addEventListener("click", function (event) {
             event.preventDefault();
             const sectionId = link.getAttribute("href").substring(1);
-            showSection(sectionId);
+            const targetSection = document.getElementById(sectionId);
+            smoothScrollTo(targetSection);
+            highlightActiveLink(sectionId);
         });
     });
 
     // Display resume content after a short delay to simulate loading
     setTimeout(() => {
         document.getElementById("loading-overlay").style.display = "none";
-    }, 1500); // Adjust the delay as per your preference
+    }, 1500);
 });
